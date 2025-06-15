@@ -36,8 +36,8 @@ async function processVideos() {
     }
   }
 
-  // Start processing queue only if we have more than BATCH_SIZE videos and not already processing
-  if (!isProcessingQueue && requestQueue.length > BATCH_SIZE) {
+  // Start processing queue only if we have at least BATCH_SIZE videos and not already processing
+  if (!isProcessingQueue && requestQueue.length >= BATCH_SIZE) {
     processRequestQueue();
   }
 }
@@ -164,7 +164,9 @@ DO NOT include any other text.`;
       isNotAllowed: isNotAllowedFlag
     });
 
-    // console.log(`Video "${video.title}" from "${video.channel}": ${isNotAllowedFlag ? 'FILTERED' : 'ALLOWED'}`);
+    if (isNotAllowedFlag) {
+      console.log(`Video "${video.title}" from "${video.channel}": FILTERED`);
+    }
   });
 
   return results;
@@ -196,11 +198,24 @@ async function getOllamaResponse(prompt) {
   return data.response;
 }
 
-// TODO: Replace with your own Gemini API key
+// TODO: Store your Gemini API key securely in extension storage (chrome.storage)
 // Get your API key from: https://ai.google.dev/
-const GEMINI_API_KEY = 'AIzaSyAIJ9TBcQJ736zmyoCHaYiFlm3aaIdVvco';
+let GEMINI_API_KEY = null;
+
+// Load the API key from Chrome extension storage
+chrome.storage.sync.get(['GEMINI_API_KEY'], function(result) {
+  if (result.GEMINI_API_KEY) {
+    GEMINI_API_KEY = result.GEMINI_API_KEY;
+    console.log("Gemini API key loaded from storage.");
+  } else {
+    console.warn("Gemini API key not found in storage. Please set it in the extension options.");
+  }
+});
 
 async function getGeminiResponse(prompt) {
+  if (!GEMINI_API_KEY) {
+    throw new Error("Gemini API key is not set. Please set it in the extension options.");
+  }
   const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`, {
     method: 'POST',
     headers: {

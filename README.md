@@ -8,6 +8,8 @@ A Chrome extension that uses AI to filter YouTube videos based on your interests
 - **Educational Focus**: Filters content to show only educational videos related to your interests
 - **Real-time Processing**: Automatically filters videos as you browse YouTube
 - **Batch Processing**: Efficiently processes multiple videos to minimize API calls
+- **Secure API Key Storage**: Safely stores your Gemini API key using Chrome's encrypted storage
+- **Easy Configuration**: Simple popup interface for managing settings
 - **Customizable Topics**: Currently configured for game development, programming, art, AI, self-improvement, and more
 
 ## How It Works
@@ -29,37 +31,36 @@ The current configuration filters for these educational topics:
 - Self-improvement and productivity
 - Psychology and philosophy
 - Science
+- Steam gaming news
 
 ## Installation
 
 1. Clone this repository
 2. Get a Gemini API key from [Google AI Studio](https://ai.google.dev/)
-3. Open `contentScript.js` and replace `YOUR_GEMINI_API_KEY_HERE` with your actual API key
-4. Open Chrome and navigate to `chrome://extensions/`
-5. Enable "Developer mode"
-6. Click "Load unpacked" and select the extension folder
-7. The extension will automatically start filtering YouTube videos
+3. Open Chrome and navigate to `chrome://extensions/`
+4. Enable "Developer mode"
+5. Click "Load unpacked" and select the extension folder
+6. Click on the extension icon in the toolbar
+7. Enter your Gemini API key in the popup and click "Save"
+8. The extension will automatically start filtering YouTube videos
 
 ## Configuration
 
-To modify the topics or AI model:
+### Setting Up Your API Key
+1. Click the extension icon in your Chrome toolbar
+2. Enter your Gemini API key in the input field
+3. Click "Save" to securely store the key
+4. Use the "Show/Hide" button to reveal or mask your API key
+
+### Customizing Topics
+To modify the topics:
 1. Edit the `allowedTopics` array in `contentScript.js`
-2. Update the AI API endpoint or model if needed
-3. Reload the extension in Chrome
+2. Reload the extension in Chrome
 
-## Requirements
-
-- Chrome browser with extension support
-- Internet connection for AI API calls
-- YouTube access
-
-## Privacy
-
-This extension:
-- Only processes video titles and channel names visible on YouTube
-- Sends data to Google's Gemini AI for analysis
-- Does not store personal data locally
-- Does not track browsing history
+### API Settings
+- **Batch Size**: Processes 10 videos at a time for efficiency
+- **API Delay**: 4-second delay between API calls to respect rate limits
+- **Model**: Uses Gemini 2.0 Flash for fast, accurate filtering
 
 ## License
 

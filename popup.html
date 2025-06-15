@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube AI Filter Settings</title>
+  <style>
+    body {
+      width: 350px;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    #apiKey {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .button-container {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    #save {
+      background-color: #4CAF50;
+      color: white;
+    }
+    #save:hover {
+      background-color: #45a049;
+    }
+    #toggleVisibility {
+      background-color: #2196F3;
+      color: white;
+    }
+    #toggleVisibility:hover {
+      background-color: #1976D2;
+    }
+    #status {
+      margin-top: 10px;
+      padding: 5px;
+      border-radius: 4px;
+      text-align: center;
+      font-size: 12px;
+    }
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .info {
+      background-color: #e7f3ff;
+      color: #0c5460;
+      border: 1px solid #b8daff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3>YouTube AI Filter Settings</h3>
+    
+    <label for="apiKey">Gemini API Key:</label>
+    <input type="password" id="apiKey" placeholder="Enter your Gemini API key">
+    
+    <div class="button-container">
+      <button id="save">Save</button>
+      <button id="toggleVisibility">Show</button>
+    </div>
+    
+    <div id="status"></div>
+    
+    <p style="font-size: 12px; color: #666; margin-top: 15px;">
+      Get your API key from: <a href="https://ai.google.dev/" target="_blank">https://ai.google.dev/</a>
+    </p>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
