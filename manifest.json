@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube AI Filter",
+  "version": "1.0",
+  "description": "Filter YouTube videos using AI",
+  "permissions": ["activeTab"],
+  "host_permissions": ["http://localhost/*", "http://127.0.0.1/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/*"],
+      "js": ["contentScript.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
