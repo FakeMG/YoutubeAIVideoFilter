@@ -198,13 +198,9 @@ async function getOllamaResponse(prompt) {
 
 // TODO: Replace with your own Gemini API key
 // Get your API key from: https://ai.google.dev/
-const GEMINI_API_KEY = 'YOUR_GEMINI_API_KEY_HERE';
+const GEMINI_API_KEY = 'AIzaSyAIJ9TBcQJ736zmyoCHaYiFlm3aaIdVvco';
 
 async function getGeminiResponse(prompt) {
-  if (GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
-    throw new Error('Please set your Gemini API key in contentScript.js');
-  }
-  
   const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`, {
     method: 'POST',
     headers: {
